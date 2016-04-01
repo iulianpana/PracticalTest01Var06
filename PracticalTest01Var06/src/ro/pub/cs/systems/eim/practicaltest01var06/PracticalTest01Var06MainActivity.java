@@ -58,7 +58,9 @@ public class PracticalTest01Var06MainActivity extends Activity {
 		public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
 				int arg3) {
 			// TODO Auto-generated method stub
-
+			passButton.setText("Failed");
+			passButton.setBackground(getApplicationContext().getResources()
+					.getDrawable(R.color.red));
 		}
 
 		@Override
@@ -68,20 +70,15 @@ public class PracticalTest01Var06MainActivity extends Activity {
 
 			if (arg0.toString().startsWith("http")) {
 				passButton.setText("Pass");
-				passButton.setBackground(getApplicationContext().getResources().getDrawable(
-						R.color.green));
-			}
-			else
-			{
+				passButton.setBackground(getApplicationContext().getResources()
+						.getDrawable(R.color.green));
+			} else {
 				passButton.setText("Failed");
-				passButton.setBackground(getApplicationContext().getResources().getDrawable(
-						R.color.green));
-				
+				passButton.setBackground(getApplicationContext().getResources()
+						.getDrawable(R.color.red));
 			}
-
-			;
-
 		}
+
 	}
 
 	@Override
@@ -118,5 +115,27 @@ public class PracticalTest01Var06MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle savedInstanceState) {
+		savedInstanceState.putString("toptext", topEditText.getText()
+				.toString());
+		savedInstanceState.putString("lowertext", lowEditText.getText()
+				.toString());
+
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		if (savedInstanceState.containsKey("toptext")) {
+			topEditText.setText(savedInstanceState.getString("toptext"));
+
+		}
+		
+		if (savedInstanceState.containsKey("lowertext")) {
+			lowEditText.setText(savedInstanceState.getString("lowertext"));
+			
+		}
 	}
 }
