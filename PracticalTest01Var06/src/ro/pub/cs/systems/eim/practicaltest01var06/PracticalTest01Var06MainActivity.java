@@ -14,7 +14,7 @@ public class PracticalTest01Var06MainActivity extends Activity {
 	private EditText topEditText = null, lowEditText = null;
 	private Button details = null,passButton= null,naviButton = null;
 	private PassListener  passListener = new PassListener();
-	
+	private ButtonListener buttonListener = new ButtonListener();
 	
 	
 	private class ButtonListener implements View.OnClickListener{
@@ -27,8 +27,17 @@ public class PracticalTest01Var06MainActivity extends Activity {
 			case R.id.details:
 				if (details.getText().toString().contains("More details")) {
 					details.setText("Less details");
-					set
+					passButton.setVisibility(View.VISIBLE);
+					lowEditText.setVisibility(View.VISIBLE);
 				}
+				else
+					if (details.getText().toString().contains("Less details")) {
+						details.setText("More details");
+						passButton.setVisibility(View.INVISIBLE);
+						lowEditText.setVisibility(View.INVISIBLE);
+					}
+					else
+						break;
 				
 				break;
 
@@ -80,9 +89,9 @@ public class PracticalTest01Var06MainActivity extends Activity {
         lowEditText = (EditText)findViewById(R.id.lower_edit_text);
         details = (Button)findViewById(R.id.details);
         passButton = (Button)findViewById(R.id.pass_button);
-        naviButton = (Button)findViewById(R.id.navigate_to_secondary_activity);+
+        naviButton = (Button)findViewById(R.id.navigate_to_secondary_activity);
         
-        details.setOnClickListener(l);
+        details.setOnClickListener(buttonListener);
         
         
     }
