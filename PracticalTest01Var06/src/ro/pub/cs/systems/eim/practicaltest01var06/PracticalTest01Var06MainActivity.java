@@ -1,10 +1,14 @@
 package ro.pub.cs.systems.eim.practicaltest01var06;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +22,15 @@ public class PracticalTest01Var06MainActivity extends Activity {
 	private PassListener passListener = new PassListener();
 	private ButtonListener buttonListener = new ButtonListener();
 	private static final int SECONDARY_ACTIVITY_REQUEST_CODE = 0;
-
+	IntentFilter intentFilter = new IntentFilter();
+	
+	private MessageBroadcastReceiver messageBroadcastReceiver = new MessageBroadcastReceiver();
+	private class MessageBroadcastReceiver extends BroadcastReceiver {
+	  @Override
+	  public void onReceive(Context context, Intent intent) {
+	    Log.d("[Message]", intent.getStringExtra("message"));
+	  }
+	}
 	private class ButtonListener implements View.OnClickListener {
 
 		@Override
@@ -122,6 +134,9 @@ public class PracticalTest01Var06MainActivity extends Activity {
 		details.setOnClickListener(buttonListener);
 		lowEditText.addTextChangedListener(passListener);
 		naviButton.setOnClickListener(buttonListener);
+		
+		//
+		intentFilter.addAction("action");
 
 	}
 
@@ -165,4 +180,17 @@ public class PracticalTest01Var06MainActivity extends Activity {
 
 		}
 	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		registerReceiver(messageBroadcastReceiver, intentFilter);
+	}
+	@Override
+	protected void onPause() {
+	    unregisterReceiver(messageBroadcastReceiver);
+	    super.onPause();
+	  }
+	
 }

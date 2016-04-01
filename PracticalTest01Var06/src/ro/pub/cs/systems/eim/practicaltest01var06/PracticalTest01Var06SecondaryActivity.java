@@ -3,6 +3,7 @@ package ro.pub.cs.systems.eim.practicaltest01var06;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ public class PracticalTest01Var06SecondaryActivity extends Activity {
 	EditText upper =null,lower =null;
 	Button ok =null,cancel=null;
 	private ButtonListener buttonListener = new ButtonListener();
-	
+	IntentFilter intentFiter = new IntentFilter();
 	
 
 	private class ButtonListener implements View.OnClickListener {
