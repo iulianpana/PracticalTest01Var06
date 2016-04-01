@@ -10,11 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class PracticalTest01Var06SecondaryActivity extends Activity {
 
 	
-	EditText upper =null,lower =null;
+	TextView top =null,lower =null;
 	Button ok =null,cancel=null;
 	private ButtonListener buttonListener = new ButtonListener();
 	IntentFilter intentFiter = new IntentFilter();
@@ -45,8 +46,8 @@ public class PracticalTest01Var06SecondaryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_practical_test01_var06_secondary);
 		
-		lower = (EditText)findViewById(R.id.top);
-		upper = (EditText)findViewById(R.id.lower);
+		top = (TextView)findViewById(R.id.top);
+		lower = (TextView)findViewById(R.id.lower);
 		
 		ok = (Button)findViewById(R.id.ok);
 		cancel = (Button) findViewById(R.id.cancel);
@@ -57,7 +58,7 @@ public class PracticalTest01Var06SecondaryActivity extends Activity {
 		Intent intent = getIntent();
 		if(intent!=null )
 			if (intent.getExtras().containsKey("toptext")) {
-				upper.setText(intent.getStringExtra("toptext"));
+				top.setText(intent.getStringExtra("toptext"));
 				
 			}
 			else

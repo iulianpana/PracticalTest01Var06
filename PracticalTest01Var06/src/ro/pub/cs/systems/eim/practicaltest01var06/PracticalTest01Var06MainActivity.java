@@ -193,4 +193,11 @@ public class PracticalTest01Var06MainActivity extends Activity {
 	    super.onPause();
 	  }
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		//stopService(service);
+		super.onDestroy();
+	}
+	
 }
