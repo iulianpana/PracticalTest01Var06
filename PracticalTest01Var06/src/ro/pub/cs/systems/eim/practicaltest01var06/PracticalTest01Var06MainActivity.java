@@ -1,6 +1,7 @@
 package ro.pub.cs.systems.eim.practicaltest01var06;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +39,13 @@ public class PracticalTest01Var06MainActivity extends Activity {
 
 				break;
 
+			case R.id.navigate_to_secondary_activity:
+				Intent intent = new Intent(getApplicationContext(),PracticalTest01Var06SecondaryActivity.class);
+				intent.putExtra("toptext",topEditText.getText());
+				intent.putExtra("lowertext",lowEditText.getText());
+				
+				
+				startActivityForResult(intent, -1);
 			default:
 				break;
 			}
@@ -94,7 +102,7 @@ public class PracticalTest01Var06MainActivity extends Activity {
 
 		// B.1
 		details.setOnClickListener(buttonListener);
-		passButton.addTextChangedListener(passListener);
+		lowEditText.addTextChangedListener(passListener);
 
 	}
 
