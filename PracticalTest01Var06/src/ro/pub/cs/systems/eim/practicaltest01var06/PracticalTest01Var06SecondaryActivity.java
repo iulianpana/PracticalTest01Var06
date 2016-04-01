@@ -2,6 +2,7 @@ package ro.pub.cs.systems.eim.practicaltest01var06;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,31 @@ public class PracticalTest01Var06SecondaryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_practical_test01_var06_secondary);
+		
+		lower = (EditText)findViewById(R.id.top);
+		upper = (EditText)findViewById(R.id.lower);
+		
+		ok = (Button)findViewById(R.id.ok);
+		cancel = (Button) findViewById(R.id.cancel);
+		
+		ok.setOnClickListener(buttonListener);
+		cancel.setOnClickListener(buttonListener);
+		
+		Intent intent = getIntent();
+		if(intent!=null )
+			if (intent.getExtras().containsKey("toptext")) {
+				upper.setText(intent.getStringExtra("toptext"));
+				
+			}
+			else
+				if (intent.getExtras().containsKey("lowertext")) {
+					lower.setText(intent.getCharSequenceExtra("lowertext"));
+				}
+		
+		
+		
+		
+		
 	}
 
 	@Override

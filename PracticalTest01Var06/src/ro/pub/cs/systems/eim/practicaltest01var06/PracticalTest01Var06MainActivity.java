@@ -10,12 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PracticalTest01Var06MainActivity extends Activity {
 	private EditText topEditText = null, lowEditText = null;
 	private Button details = null, passButton = null, naviButton = null;
 	private PassListener passListener = new PassListener();
 	private ButtonListener buttonListener = new ButtonListener();
+	private static final int SECONDARY_ACTIVITY_REQUEST_CODE = 0;
 
 	private class ButtonListener implements View.OnClickListener {
 
@@ -40,18 +42,28 @@ public class PracticalTest01Var06MainActivity extends Activity {
 				break;
 
 			case R.id.navigate_to_secondary_activity:
-				Intent intent = new Intent(getApplicationContext(),PracticalTest01Var06SecondaryActivity.class);
-				intent.putExtra("toptext",topEditText.getText());
-				intent.putExtra("lowertext",lowEditText.getText());
-				
-				
-				startActivityForResult(intent, -1);
+				Intent intent = new Intent(getApplicationContext(),
+						PracticalTest01Var06SecondaryActivity.class);
+				intent.putExtra("toptext", topEditText.getText());
+				intent.putExtra("lowertext", lowEditText.getText());
+
+				startActivityForResult(intent, SECONDARY_ACTIVITY_REQUEST_CODE);
 			default:
 				break;
 			}
 
 		}
 
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+		if (requestCode == SECONDARY_ACTIVITY_REQUEST_CODE) {
+			Toast.makeText(this,
+					"The activity returned with result " + resultCode,
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	private class PassListener implements TextWatcher {
@@ -80,6 +92,12 @@ public class PracticalTest01Var06MainActivity extends Activity {
 				passButton.setText("Pass");
 				passButton.setBackground(getApplicationContext().getResources()
 						.getDrawable(R.color.green));
+				
+				Intent service = new Intent(getApplicationContext(),PracticalTest01Var06SecondaryActivity.class);
+				getApplication().startService(service);
+				
+				
+				
 			} else {
 				passButton.setText("Failed");
 				passButton.setBackground(getApplicationContext().getResources()
@@ -103,6 +121,7 @@ public class PracticalTest01Var06MainActivity extends Activity {
 		// B.1
 		details.setOnClickListener(buttonListener);
 		lowEditText.addTextChangedListener(passListener);
+		naviButton.setOnClickListener(buttonListener);
 
 	}
 
@@ -140,10 +159,10 @@ public class PracticalTest01Var06MainActivity extends Activity {
 			topEditText.setText(savedInstanceState.getString("toptext"));
 
 		}
-		
+
 		if (savedInstanceState.containsKey("lowertext")) {
 			lowEditText.setText(savedInstanceState.getString("lowertext"));
-			
+
 		}
 	}
 }
