@@ -12,7 +12,8 @@
         android:id="@+id/top_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text" 
+        android:saveEnabled="false"/>
 
     <Button
         android:id="@+id/details"
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/top_edit_text"
         android:layout_below="@id/top_edit_text"
-        android:text="@string/less_details" />
+        android:text="@string/less_details"
+        android:saveEnabled="false" />
 
     <Button
         android:id="@+id/pass_button"
@@ -31,7 +33,7 @@
         android:text="@string/pass"
         android:visibility="visible"
         android:background="@color/green" 
-        
+        android:saveEnabled="false"
         />
 
     <EditText
@@ -41,7 +43,8 @@
         android:layout_alignLeft="@id/top_edit_text"
         android:layout_below="@id/details"
         android:layout_toLeftOf="@+id/pass_button"
-        android:inputType="text" />
+        android:inputType="text" 
+        android:saveEnabled="false"/>
     
     <Button 
         android:id="@+id/navigate_to_secondary_activity"
@@ -50,7 +53,7 @@
         android:gravity="center"
         android:text="@string/navigate_to_secondary_activity"
         android:layout_below="@id/pass_button"
-        
+        android:saveEnabled="false"
         />
 
 </RelativeLayout>
